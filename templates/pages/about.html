@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+<div class="AboutContainer">
+
+{% include 'partials/_navbar.html' %}
+
+<div class="Hero">
+    <div class="Hero-head">
+            <h1 class="heading-1 mb-md">
+                    About Nexter Real Estate
+                </h1>
+    
+                <p class="para mb-sm">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!
+                </p>
+    </div>
+</div>
+
+<div class="BreadCrum">
+   <ul class="BreadCrum--list">
+       <li class="BreadCrum--item">
+            <svg class="BreadCrum--icon">
+                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-home"></use>
+            </svg>
+            <a href="{% url 'home' %}" class="BreadCrum--link">Home</a>
+       </li> 
+
+       <li  class="BreadCrum--item">
+           About
+       </li>
+
+   </ul>
+</div>
+
+<section class="About__Main">
+    <div class="About__Main--container">
+      <div class="About__Main--row">
+        <div class="About__Main--col-left">
+          <h2 class="heading-2 heading-2--sec mb-md">We Search For The Perfect Home</h2>
+          <p class="para mb-md">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!</p>
+          <img src="{% static 'img/about-home.jpg' %}" alt="home" class="About__Main--col-left-img mb-md">
+          <p class="para mb-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis esse officia repudiandae ad saepe ex, amet
+            neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
+            commodi id libero eveniet harum perferendis laborum molestias quia.</p>
+            
+        </div>
+        <div class="About__Main--col-right">
+
+            <div class="About__Main--card">
+                <img class="About__Main--col-right-img mb-sm" src="{% static 'img/realtor/jane.jpg' %}" alt="Seller of the month">
+                <div class="About__Main--card-body">
+                  <h4 class="heading-4 mb-sm">
+                      Seller Of The Month</h4>
+                  <h3 class="About__Main--card-body-name mb-sm">Jane Doe</h3>
+                  <p class="para mb-sm"> Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!
+                       
+                  </p>
+                 
+                </div>
+              </div>
+              
+          
+        </div>
+      </div>
+    </div>
+    <div class="clearfix">
+
+    </div>
+  </section>
+
+  <section class="About_List">
+      <div class="About_List--container">
+            <div class="About_List-col">
+                    <h4 class="heading-4 mb-sm"> Looking for a property</h4>
+                    <h2 class="heading-2 heading-2--sec mb-sm">Unique Opportunit for Unique People!</h2>
+            </div>
+
+            <div class="About_List-col">
+                    <p class="para mb-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem velit aperiam, unde aliquid at similique!
+                        neque quod accusamus rem quia magnam magni dolorum facilis ullam minima perferendis? Exercitationem at quaerat
+                            commodi id libero eveniet harum perferendis laborum molestias quia.
+                    </p>
+                    <a href="#" class="btn About_List-link"> View Our Featured Listings</a>
+            </div>
+
+      </div>
+
+
+      </section>
+
+      <section class="About__team">
+          <div class="About__team--container">
+              <div class="About__team--head mb-md">
+                    <h4 class="heading-4">
+                        Agents
+                    </h4>
+                    <h2 class="heading-2 heading-2--sec">Experts that take care of you</h2>
+              </div>
+
+              <div class="About__team--row">
+                {% if realtors %}
+                {% for realtor in realtors %}
+                  <div class="About__team--col">
+                      <img src="{{ realtor.photo.url }}" class="About__team--col-img">
+                      <div class="About__team--col-body">
+                          <h4 class="heading-4 mb-sm"> 
+                                {{ realtor.name }}
+                          </h4>
+                          <a class="btn" href="#" >View</a>
+                      </div>
+
+                  </div>
+
+                  {% endfor %}
+
+                  {% endif %}
+
+              </div>
+
+          </div>
+          
+      </section>
+
+      {% include 'partials/_footer.html' %}
+
+    </div>
+
+{% endblock %}

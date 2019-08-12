@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block content %}
+
+<div class="container">
+        <div class="HomeContainer">
+            <div class="HomeContainer__hero">
+
+                {% include 'partials/_navbar.html' %}
+                
+
+<div class="hero-header mb-md">
+    <div class="hero-header__heading">
+        <h4 class="heading-4 mb-md mt-md ">Live Where You Love </h4>
+        <h2 class="heading-2 heading-2--light "> Your Search for a Dream Home <br> Starts Here. </h2>
+    </div>
+</div>
+{% include 'partials/_searchform.html' %}
+</div>
+
+
+<section class="features">
+<div class="feature">
+  <svg class="feature__icon">
+   <use xlink:href="{% static 'img/sprite.svg' %}#icon-global">
+  </use>   
+  </svg>
+  <h4 class="heading-4 heading-4--dark">
+      World's Best luxury homes.
+  </h4>
+  <p class="feature__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+      Tenetur distinctio necessitatibus pariatur voluptatibus.
+  </p>
+</div>
+
+  <div class="feature">
+          <svg class="feature__icon">
+           <use xlink:href="{% static 'img/sprite.svg' %}#icon-trophy">
+              
+          </use>   
+          </svg>
+          <h4 class="heading-4 heading-4--dark">
+              Only the best Properties.
+          </h4>
+
+          <p class="feature__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+              Tenetur distinctio necessitatibus pariatur voluptatibus.
+          </p>
+      
+  </div>
+
+  <div class="feature">
+          <svg class="feature__icon">
+           <use xlink:href="{% static 'img/sprite.svg' %}#icon-map-pin">
+              
+          </use>   
+          </svg>
+          <h4 class="heading-4 heading-4--dark">
+              All homes in top location.
+          </h4>
+
+          <p class="feature__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+              Tenetur distinctio necessitatibus pariatur voluptatibus.
+          </p>
+      
+      </div>
+
+      <div class="feature">
+              <svg class="feature__icon">
+               <use xlink:href="{% static 'img/sprite.svg' %}#icon-key">
+                  
+              </use>   
+              </svg>
+              <h4 class="heading-4 heading-4--dark">
+                  New Home in a week
+              </h4>
+
+              <p class="feature__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                  Tenetur distinctio necessitatibus pariatur voluptatibus.
+              </p>
+          
+          </div>
+
+          <div class="feature">
+                  <svg class="feature__icon">
+                   <use xlink:href="{% static 'img/sprite.svg' %}#icon-presentation">
+                      
+                  </use>   
+                  </svg>
+                  <h4 class="heading-4 heading-4--dark">
+                      Top 1% realtors.
+                  </h4>
+  
+                  <p class="feature__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+                      Tenetur distinctio necessitatibus pariatur voluptatibus.
+                  </p>
+              
+              </div>
+
+<div class="feature">
+          <svg class="feature__icon">
+              <use xlink:href="{% static 'img/sprite.svg' %}#icon-lock">
+              
+          </use>   
+          </svg>
+          <h4 class="heading-4 heading-4--dark">
+              Secure payments on Nexter.
+          </h4>
+
+          <p class="feature__text">Lorem, ipsum dolor sit amet consectetur adipisicing elit. 
+              Tenetur distinctio necessitatibus pariatur voluptatibus.
+          </p>
+      
+</div>
+</section>
+
+<div class="HomeContainer__listing">
+
+<div class="HomeContainer__listing-heading " >
+<h2 class="heading-2 ">
+Lastest Listings
+</h2>
+
+</div>
+
+<section class="homes">
+
+    {% if listings %}
+
+        {% for listing in listings %}
+
+        <div class="home mb-md">
+                <img src="{{ listing.photo_main.url }}" alt="House 1" class="home__img">
+                <svg class="home__like">
+                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-heart-full"></use>
+                </svg>
+                <h5 class="home__name">
+                  {{ listing.title }}
+                </h5>
+                <div class="home__location">
+                    <svg>
+                        <use xlink:href="{% static 'img/sprite.svg' %}#icon-map-pin"></use>
+                    </svg>
+                    <p>{{ listing.city}}</p>
+                </div>
+                <div class="home__rooms">
+                        <svg>
+                            <use xlink:href="{% static 'img/sprite.svg' %}#icon-profile-male"></use>
+                        </svg>
+                        <p>{{ listing.bedrooms }} rooms</p>
+                </div>
+                
+                <div class="home__area">
+                        <svg>
+                            <use xlink:href="{% static 'img/sprite.svg' %}#icon-expand"></use>
+                        </svg>
+                        <p>{{ listing.sqft }} m<sup>2</sup></p>
+                    </div>
+                
+                    <div class="home__price">
+                            <svg>
+                                <use xlink:href="{% static 'img/sprite.svg' %}#icon-key"></use>
+                            </svg>
+                            <p>${{listing.price | intcomma }}</p>
+                        </div>
+                <a href="{% url 'listing' listing.id %}" class="btn home_btn">More Info</a>                    
+                </div>
+
+
+        {% endfor %}
+
+
+    {% endif %}
+
+</section>
+
+</div>
+
+{% include 'partials/_footer.html' %}
+
+</div>
+
+
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

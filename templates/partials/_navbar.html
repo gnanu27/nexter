@@ -1,0 +1,153 @@
+{% load static %}
+
+
+<div class="hero__nav">
+    <div class="hero__nav-row">
+            <svg>
+                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-phone"></use>
+            </svg>
+            <p class="para">
+                
+                    +999 999 999   
+            </p>
+
+
+    </div>
+        
+    <div class="hero__nav-row">
+            <svg>
+                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-envelope"></use>
+            </svg>
+
+            <p class="para">
+                    Support@nexter.com
+            </p>
+
+
+    </div>
+
+
+        <div class="hero__nav--social">
+                <svg>
+                        <use xlink:href="{% static 'img/sprite.svg' %}#icon-facebook"></use>
+                </svg>
+
+                <svg>
+                        <use xlink:href="{% static 'img/sprite.svg' %}#icon-linkedin"></use>
+                </svg>
+
+                <svg>
+                        <use xlink:href="{% static 'img/sprite.svg' %}#icon-twitter"></use>
+                </svg>       
+        </div>
+
+    </div>
+    <nav class="navigation" >
+            <div class="navigation__logo">
+                <img src="{% static 'img/logo.png' %}" alt="logo" class="navigation__logo-img"/>
+            </div>
+            <div class="navigation__burger-container">
+
+                    <label for="burger-check" class="navigation__burger">
+                        <div class="navigation__burger-element">
+                        </div>
+                    </label> 
+            </div>
+            <input type="checkbox" class="navigation__burger-check" id="burger-check">
+
+            <div class="navigation__menu">
+                <ul class="navigation__menu--list navigation__menu--left">
+                    <li class="navigation__menu--item">
+
+                        <a href="{% url 'home' %}"
+                                {% if '/'  == request.path %}
+                                        class="active"
+                                {% else %}
+                                        class="navigation__menu--link"
+                                {% endif %}
+                                        > Home</a>
+                                
+
+                    </li>
+
+                    <li class="navigation__menu--item">
+                        <a href="{% url 'about' %}" 
+                        {% if '/about/'  == request.path %}
+                                 class="active"
+                        {% else %}
+                                class="navigation__menu--link"
+                        {% endif %}
+                        
+                        > About </a>
+                    </li>
+
+                    <li class="navigation__menu--item">
+                        <a href="{% url 'listings' %}" 
+
+                        {% if '/listing/'  == request.path %}
+                                class="active"
+                        {% else %}
+                                class="navigation__menu--link"
+                        {% endif %}
+                        
+                        > Feartured Listings </a>
+                    </li>
+                </ul>
+           
+                <ul class="navigation__menu--list navigation__menu--right">
+                    {% if user.is_authenticated %}
+                    <li class="navigation__menu--item">
+                            <a href="{% url 'dashboard' %}" 
+                        {% if '/account/dashboard/'  == request.path %}
+                            class="active"
+                    {% else %}
+                            class="navigation__menu--link"
+                    {% endif %}
+                            
+                            >
+                                  Welcome {{user.username}} (Dashboard)
+                            </a>
+                    </li>
+    
+                    <li class="navigation__menu--item">
+                            <a href="javascript:{document.getElementById('logout').submit()}" class="navigation__menu--link">
+                                     Logout
+                                  </a>
+                                  <form id="logout" action="{% url 'logout' %}" method="POST">
+                                    {% csrf_token %}
+                                    <input type="hidden">
+                                  </form>
+              
+                    </li>
+
+
+                    {% else %}
+                    <li class="navigation__menu--item">
+                        <a href="{% url 'register' %}" 
+                {% if '/account/register/'  == request.path %}
+                        class="active"
+                {% else %}
+                        class="navigation__menu--link"
+                {% endif %}
+                        >
+                               Register 
+                        </a>
+                    </li>
+
+                    <li class="navigation__menu--item">
+                            <a href="{% url 'login' %}" 
+                    {% if '/account/login/'  == request.path %}
+                            class="active"
+                    {% else %}
+                            class="navigation__menu--link"
+                    {% endif %}
+                            
+                            >
+                                   Login
+                            </a>
+                    </li>
+
+                    {% endif %}
+                    </ul>
+            </div>
+    </nav>

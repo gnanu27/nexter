@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block link %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+{% endblock %}
+{% block content %}
+
+<div class="PropertyContainer">
+
+    {% include 'partials/_navbar.html' %}
+           
+<section id="login" class="bg-light py-5">
+    
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 mx-auto">
+              <div class="card">
+                <div class="card-header bg-secondary text-white">
+                  <h2 class="heading-2">
+                    Login</h2>
+                </div>
+                <div class="card-body">
+                    {% include 'partials/_alert.html' %}
+                    <form action="{% url 'login' %}" method="POST">
+                        {% csrf_token  %}
+                    <div class="form-group mb-sm">
+                      <label class="para mb-sm" for="username">Username</label>
+                      <input type="text" name="username" class="modal-input form-control" required>
+                    </div>
+    
+                    <div class="form-group mb-md">
+                      <label class="para mb-sm" for="password">Password</label>
+                      <input type="password" name="password" class="modal-input form-control" required>
+                    </div>
+    
+                    <input type="submit" value="Login" class="btn-pri">
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+</div>
+      {% include 'partials/_footer.html' %}
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+{% endblock %}

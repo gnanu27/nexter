@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block link %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" >
+
+
+{% endblock %}
+
+
+{% block content %}
+<div class="PropertyContainer">
+        {% include 'partials/_navbar.html' %}
+<div class="Hero">
+    <div class="Hero-head">
+            <h1 class="heading-1 mb-md">
+                   User Dashboard
+                </h1>
+    
+                <p class="para mb-sm">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, pariatur!
+                </p>
+    </div>
+</div>
+
+<div class="BreadCrum">
+   <ul class="BreadCrum--list">
+       <li class="BreadCrum--item">
+            <svg class="BreadCrum--icon">
+                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-home"></use>
+            </svg>
+            <a href="" class="BreadCrum--link">Home</a>
+       </li> 
+
+       <li  class="BreadCrum--item">
+           Dashboard
+       </li>
+
+   </ul>
+</div>
+
+<section class="dashboard__table-container">
+    <h2 class="heading-2">
+        Welcome Jane 
+    </h2>
+
+    <p class="para">
+            Here are the property listings that you have inquired about
+    </p>
+    <table class="dashboard__table">
+            <thead>
+             
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Property</th>
+                <th></th>
+              </tr>
+              
+            </thead>
+            <tbody>
+              {% for contact in contacts %}
+              <tr>
+                <td>{{contact.id}}</td>
+                <td>{{contact.listing}}</td>
+                <td>
+                  <a class="btn-pri " href="{% url 'listing' contact.listing_id %}">View Listing</a>
+                </td>
+              </tr>
+              {% endfor %}
+              
+            </tbody>
+          </table>
+</section>
+
+
+</div>
+
+
+{% include 'partials/_footer.html' %}
+
+
+{% endblock %}

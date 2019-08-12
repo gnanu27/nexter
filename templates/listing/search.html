@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block content %}
+
+<div class="ListingContainer">
+    {% include 'partials/_navbar.html' %}
+
+    <div class="Hero-searchForm">
+                        
+            {% include 'partials/_searchform.html' %}
+    </div>
+
+    <div class="BreadCrum">
+            <ul class="BreadCrum--list">
+                <li class="BreadCrum--item">
+                     <svg class="BreadCrum--icon">
+                             <use xlink:href="image/sprite.svg#icon-home"></use>
+                     </svg>
+                     <a href="" class="BreadCrum--link">Home</a>
+                </li> 
+ 
+                <li  class="BreadCrum--item">
+                   norwood
+                </li>
+ 
+            </ul>
+         </div>
+
+         <section class="Listing__homes">
+
+            {% if listing %}
+
+                {% for list in listing %}
+
+                                        
+                <div class="Listing__home mb-md">
+                        <img src="{{ list.photo_main.url}}" alt="House 1" class="Listing__home__img">
+                        <svg class="Listing__home__like">
+                            <use xlink:href="image/sprite.svg#icon-heart-full"></use>
+                        </svg>
+                        <h5 class="Listing__home__name">
+                         {{list.house_model}}
+                        </h5>
+        
+                        <div class="Listing__home__location mt-sm">
+        
+                                <h3 class="heading-3 mt-md mb-sm">
+                                        {{ list.title }}
+                                </h3>
+                                
+                                <p class="para"> <svg> <use xlink:href="{% static 'img/sprite.svg' %}#icon-map-pin"></use> </svg> Norwood, MA, 600002</p>
+                        </div>
+        
+        
+                        <div class="Listing__home__hr">
+                        </div>
+        
+                        <div class="Listing__home__rooms">
+                                <svg>
+                                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-bed"></use>
+                                </svg>
+                                <p>{{ list.bedroom }}rooms</p>
+                        </div>
+        
+                        <div class="Listing__home__garage">
+                                <svg>
+                                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-travel-car"></use>
+                                </svg>
+                                <p>{{list.garage}}garage</p>
+                        </div>     
+        
+                        <div class="Listing__home__area">
+                                <svg>
+                                    <use xlink:href="{% static 'img/sprite.svg' %}#icon-expand"></use>
+                                </svg>
+                                <p>{{ list.sqft }} m<sup>2</sup></p>
+                            </div>
+        
+                            <div class="Listing__home__price">
+                                    <svg>
+                                        <use xlink:href="{% static 'img/sprite.svg' %}#icon-key"></use>
+                                    </svg>
+                                    <p>{{list.price}}</p>
+                            </div>
+        
+        
+                                <div class="Listing__home__hr">
+                                </div>
+        
+                                <div class="Listing__home__price">
+                                        <svg>
+                                            <use xlink:href="{% static 'img/sprite.svg' %}#icon-profile-male"></use>
+                                        </svg>
+                                        <p>{{ list.realtor }}</p>
+                                </div>                
+        
+                        <a class="btn Listing__home_btn" href="{% url 'listing' list.id %}">More Info</a>                    
+                    </div>
+
+
+
+                {% endfor %}
+
+            {% endif %}
+
+    
+                <!--  -->
+    
+          </section>
+          
+
+
+          </div>
+
+          {% endblock %}
+    
+
+
+</div>
