@@ -19,9 +19,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
+
+
 
 # Application definition
 
@@ -120,7 +120,6 @@ STATICFILES_DIRS = [
 
 
 #media
-
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
@@ -133,9 +132,11 @@ MESSAGE_TAGS = {
 }
 
 
-#local settings
 
+#local settings
 try: 
     from .local_settings import *
 except ImportError:
     pass
+
+
